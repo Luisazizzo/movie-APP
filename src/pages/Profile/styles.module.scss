@@ -1,0 +1,27 @@
+.profile {
+  .title {
+    margin-top: 100px;
+    text-align: center;
+  }
+  .email {
+    text-align: center;
+    margin-top: 10px;
+    color: #ffffff74;
+  }
+  .space {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px !important;
+    margin-top: 40px;
+    .button {
+      background-color: #e50914;
+      font-weight: bold;
+      border-radius: 0;
+      &:hover {
+        background-color: #ff7875;
+      }
+    }
+  }
+}

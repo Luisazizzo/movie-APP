@@ -1,0 +1,19 @@
+.button {
+  background-color: #e50914;
+  font-weight: bold;
+  border-radius: 0;
+
+  &:hover {
+    background-color: #ff7875 !important;
+  }
+  &:disabled {
+    opacity: 0.5 !important;
+  }
+}
+.error {
+  color: red;
+  margin-bottom: 30px;
+}
+label {
+  width: 20px !important;
+}

@@ -1,0 +1,24 @@
+.TendinaMenu {
+  width: 250px;
+  height: 300px;
+  background-color: #000;
+  border-top: 2px solid #fff;
+  position: fixed;
+  top: 50px;
+  right: -300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  padding: 30px;
+  font-size: 18px;
+  transition: all 0.5s;
+  &.show {
+    right: 10px;
+  }
+
+  .active {
+    color: #fff;
+  }
+}

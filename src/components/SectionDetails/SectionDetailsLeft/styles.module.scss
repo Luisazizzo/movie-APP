@@ -1,0 +1,53 @@
+.description {
+  width: 50%;
+  .titleAndIcon {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+    .icon {
+      cursor: pointer;
+      min-width: 35px;
+      font-size: 35px;
+      margin-bottom: 16px;
+    }
+  }
+  p {
+    line-height: 22px;
+  }
+  .categoria {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    .adulti_true {
+      margin-top: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: red;
+    }
+    .adulti_false {
+      margin-top: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: green;
+    }
+  }
+
+  .overview {
+    margin: 20px 0;
+    font-size: 20px;
+    line-height: 30px;
+    max-width: 600px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .description {
+    width: 100%;
+  }
+}

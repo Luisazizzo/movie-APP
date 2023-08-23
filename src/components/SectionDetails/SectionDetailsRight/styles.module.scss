@@ -1,0 +1,16 @@
+.moreInfo {
+  h3 {
+    margin-bottom: 20px;
+  }
+  p {
+    margin-left: 10px;
+    line-height: 40px;
+  }
+  a {
+    margin-left: 10px;
+    color: #e50914;
+    &:hover {
+      color: #fff;
+    }
+  }
+}

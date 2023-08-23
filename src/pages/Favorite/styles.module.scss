@@ -1,0 +1,15 @@
+.Preferiti {
+  .title {
+    margin-top: 100px;
+    text-align: center;
+  }
+  .notPrefer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    p {
+      font-size: 20px;
+    }
+  }
+}

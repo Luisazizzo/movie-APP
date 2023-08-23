@@ -1,0 +1,68 @@
+.Navbar {
+  background-color: transparent;
+  padding: 15px 40px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+  a {
+    text-decoration: none;
+    color: #ffffff93;
+  }
+  a.active {
+    color: #fff;
+  }
+  &.scrolled {
+    background-color: #000;
+  }
+  .logo {
+    color: #e50914;
+    cursor: pointer;
+  }
+  .navigation {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    p {
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .authIcon {
+      color: #ffffff93;
+      cursor: pointer;
+
+      &.active {
+        color: #fff;
+      }
+    }
+    .iconSearch {
+      color: #ffffff93;
+      cursor: pointer;
+      &.active {
+        color: #fff;
+      }
+    }
+  }
+  .hamburgerMenu {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .Navbar {
+    .navigation {
+      display: none;
+    }
+    .hamburgerMenu {
+      display: flex;
+      justify-content: flex-end;
+      flex-grow: 1;
+      font-size: 22px;
+      cursor: pointer;
+    }
+  }
+}
