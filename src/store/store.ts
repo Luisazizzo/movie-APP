@@ -1,21 +1,26 @@
-import { configureStore } from "@reduxjs/toolkit";
-import usersSlice from "./reduxSlices/usersSlice";
-import { setupListeners } from "@reduxjs/toolkit/dist/query";
+import {
+  PreloadedState,
+  combineReducers,
+  configureStore,
+} from "@reduxjs/toolkit";
+import usersSlice from "./reduxSlices/userSlice/usersSlice";
 import { movieApi } from "../api/movieApi";
-import favoriteSlice from "./reduxSlices/favoriteSlice";
+import favoriteSlice from "./reduxSlices/favoriteSlice/favoriteSlice";
 
-export const store = configureStore({
-  reducer: {
-    usersSlice: usersSlice,
-    favoriteSlice: favoriteSlice,
-    [movieApi.reducerPath]: movieApi.reducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(movieApi.middleware),
+const rootReducer = combineReducers({
+  usersSlice: usersSlice,
+  favoriteSlice: favoriteSlice,
+  [movieApi.reducerPath]: movieApi.reducer,
 });
+export function setupStore(preloadedState?: PreloadedState<RootState>) {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(movieApi.middleware),
+  });
+}
 
-setupListeners(store.dispatch);
-
-export type RootState = ReturnType<typeof store.getState>;
-
-export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore["dispatch"];

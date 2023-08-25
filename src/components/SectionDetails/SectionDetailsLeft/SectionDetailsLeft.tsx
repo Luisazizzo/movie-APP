@@ -1,13 +1,13 @@
 import styles from "./styles.module.scss";
 import { useCallback, useMemo } from "react";
-import { invertDate, invertMinutes } from "../../../commons/utils/metod";
+import { invertDate, invertMinutes } from "../../../commons/utils/method";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { ISectionLeftProps } from "../../../interface";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addFavorites,
   deleteFavorites,
-} from "../../../store/reduxSlices/favoriteSlice";
+} from "../../../store/reduxSlices/favoriteSlice/favoriteSlice";
 import { RootState } from "../../../store/store";
 
 const SectionDetailsLeft = ({ data }: ISectionLeftProps) => {

@@ -1,27 +1,38 @@
 import LogIn from "./LogIn";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import { PreloadedState } from "@reduxjs/toolkit";
+import { Provider } from "react-redux";
+import { RootState, setupStore } from "../../../store/store";
 
-const mockUseSelector = jest.fn();
-jest.mock("react-redux", () => ({
-  ...jest.requireActual("react-redux"),
-  useSelector: () => mockUseSelector,
-}));
+const preloadedState: PreloadedState<RootState> = {
+  usersSlice: {
+    username: "username",
+    password: "password",
+    email: "email",
+    isLogged: true,
+  },
+};
+
+const renderLogin = (preloadedState?: PreloadedState<RootState>) => {
+  render(
+    <Provider store={setupStore(preloadedState)}>
+      <LogIn />
+    </Provider>
+  );
+};
 
 jest.mock("./utils/hooks/useHandleOnSubmitLogIn");
 
-const renderLogin = () => render(<LogIn />);
-
 describe("Login component", () => {
   test("Should render correctly", () => {
-    renderLogin();
+    renderLogin(preloadedState);
     expect(screen.getByTestId("ComponentTitle")).toBeInTheDocument();
     expect(screen.getAllByRole("textbox").length).toBe(2);
     expect(screen.getByRole("button")).toBeInTheDocument();
     expect(screen.getByRole("button")).toBeDisabled();
   });
   test("Button should be disabled if wrong input values", async () => {
-    renderLogin();
+    renderLogin(preloadedState);
     const inputUsername = screen.getAllByRole("textbox")[0];
     const inputPassword = screen.getAllByRole("textbox")[1];
     fireEvent.change(inputUsername, { target: { value: "testUser" } });
@@ -31,7 +42,7 @@ describe("Login component", () => {
     });
   });
   test("Button should be enabled if correct input values", () => {
-    renderLogin();
+    renderLogin(preloadedState);
     const inputUsername = screen.getAllByRole("textbox")[0];
     const inputPassword = screen.getAllByRole("textbox")[1];
     fireEvent.change(inputUsername, { target: { value: "pippo" } });
@@ -40,7 +51,7 @@ describe("Login component", () => {
     expect(screen.queryByRole("button")).not.toBeDisabled();
   });
   test("Should render error messagges when input fields are not valid", async () => {
-    renderLogin();
+    renderLogin(preloadedState);
     const inputUsername = screen.getAllByRole("textbox")[0];
     const inputPassword = screen.getAllByRole("textbox")[1];
     fireEvent.blur(inputUsername);

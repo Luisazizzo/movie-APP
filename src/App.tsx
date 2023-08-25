@@ -3,10 +3,10 @@ import styles from "./App.module.scss";
 import Navbar from "./components/Navbar/Navbar";
 import { Outlet, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { retrieveUser } from "./store/reduxSlices/usersSlice";
+import { retrieveUser } from "./store/reduxSlices/userSlice/usersSlice";
 import { IUser } from "./interface/IUser";
 import { EnumRoutes } from "./constants/enumRoutes";
-import { retrieveFavorites } from "./store/reduxSlices/favoriteSlice";
+import { retrieveFavorites } from "./store/reduxSlices/favoriteSlice/favoriteSlice";
 import { IGetMovieDetails } from "./interface";
 
 function App() {

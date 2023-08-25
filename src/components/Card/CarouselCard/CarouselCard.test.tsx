@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { IMovie } from "../../../interface";
 import CarouselCard from "./CarouselCard";
-import "@testing-library/jest-dom";
 
 jest.mock("../../../hooks/useHandleClickCard");
 

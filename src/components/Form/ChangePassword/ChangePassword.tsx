@@ -3,17 +3,20 @@ import { Button, Form, Input } from "antd";
 import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-import { IFormChangeProps, IFormValues } from "../../../interface";
+import {
+  IChangePasswordProps,
+  IFormValuesChangePassword,
+} from "../../../interface";
 import useHandleOnSubmitChangePass from "./utils/hooks/useHandleOnSubmitChangePass";
 import { changePasswordSchema } from "./utils/validationSchema";
 
-const ChangePassword = ({ closeModal }: IFormChangeProps) => {
+const ChangePassword = ({ closeModal }: IChangePasswordProps) => {
   const stateUsers = useSelector((state: RootState) => state.usersSlice);
   const handleOnSubmitChangePassForm = useHandleOnSubmitChangePass({
     closeModal,
   });
 
-  const initialValues: IFormValues = {
+  const initialValues: IFormValuesChangePassword = {
     oldPassword: "",
     newPassword: "",
     confirmPassword: "",

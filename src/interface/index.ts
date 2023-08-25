@@ -1,29 +1,30 @@
-import { ICarouselProps } from "./ICarousel";
-import { IFormValues, IFormChangeProps } from "./IFormChange";
-import { IFormValuesLogin } from "./IFormLogin";
-import { IFormValuesSignup } from "./IFormSignup";
+import { ICarouselProps } from "./ICarouselProps";
+import { IFormValuesLogin } from "./IFormValuesLogin";
+import { IFormValuesSignup } from "./IFormValuesSignup";
 import { IGenre, Genres } from "./IGenre";
 import { IGetMoviesRes } from "./IGetMoviesRes";
-import { IHeroProps } from "./IHero";
-import { IListCardProps } from "./IListCard";
-import { IModalChangeProps } from "./IModalChange";
+import { IHeroProps } from "./IHeroProps";
+import { IListCardProps } from "./IListCardProps";
+import { IModalChangeProps } from "./IModalChangeProps";
 import { IMovie, Movies } from "./IMovie";
-import { IMovieCardProps } from "./IMovieCard";
-import { IPaginationProps } from "./IPagination";
+import { IMovieCardProps } from "./IMovieCardProps";
+import { IPaginationProps } from "./IPaginationProps";
 import { IUser } from "./IUser";
 import { IGetMovieDetails } from "./IGetMovieDetails";
-import { IGetIdVideos } from "./IGetVideos";
+import { IGetIdVideos } from "./IGetIdVideos";
 import { IGetSearch } from "./IGetSearch";
-import { IFooterDetails } from "./IFooter";
-import { ISectionLeftProps } from "./ISectionLeft";
-import { ISectionRightProps } from "./ISectionRight";
+import { IFooterDetails } from "./IFooterDetails";
+import { ISectionLeftProps } from "./ISectionLeftProps";
+import { ISectionRightProps } from "./ISectionRightProps";
 import { IMenuProps } from "./IMenuProps";
-import { IGenresProps } from "./IGenresListProps";
+import { IGenresListProps } from "./IGenresListProps";
+import { IFormValuesChangePassword } from "./IFormValuesChangePassword";
+import { IChangePasswordProps } from "./IChangePasswordProps";
 
 export type {
   ICarouselProps,
-  IFormChangeProps,
-  IFormValues,
+  IFormValuesChangePassword,
+  IChangePasswordProps,
   IFormValuesLogin,
   IFormValuesSignup,
   IGenre,
@@ -44,5 +45,5 @@ export type {
   ISectionLeftProps,
   ISectionRightProps,
   IMenuProps,
-  IGenresProps,
+  IGenresListProps,
 };

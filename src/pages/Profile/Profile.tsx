@@ -6,7 +6,10 @@ import { Button, Popconfirm, Space } from "antd";
 import { useNavigate } from "react-router-dom";
 import { EnumRoutes } from "../../constants/enumRoutes";
 import ModalChange from "../../components/ModalChange/ModalChange";
-import { logUser, removeUser } from "../../store/reduxSlices/usersSlice";
+import {
+  logUser,
+  removeUser,
+} from "../../store/reduxSlices/userSlice/usersSlice";
 import ChangePassword from "../../components/Form/ChangePassword/ChangePassword";
 
 const Profile = () => {

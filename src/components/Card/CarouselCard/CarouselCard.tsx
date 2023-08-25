@@ -1,4 +1,4 @@
-import { ICarouselProps } from "../../../interface/ICarousel";
+import { ICarouselProps } from "../../../interface/ICarouselProps";
 import styles from "./styles.module.scss";
 import { EnumBaseUrl, EnumSizeImage } from "../../../constants";
 import { useMemo } from "react";

@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import ListCard from "./ListCard";
-import "@testing-library/jest-dom";
 import { Movies } from "../../interface";
 
 const mock: Movies = [

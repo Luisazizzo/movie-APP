@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import Card from "./MovieCard";
 import { IMovie } from "../../../interface";
-import "@testing-library/jest-dom";
 
 jest.mock("../../../hooks/useHandleClickCard");
 jest.mock("../../../commons/assets/images/img.png", () => "coverNotFound.png");

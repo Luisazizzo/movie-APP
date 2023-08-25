@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import ModalChange from "./ModalChange";
-import "@testing-library/jest-dom";
 
 jest.mock("antd", () => ({
   ...jest.requireActual("antd"),

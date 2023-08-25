@@ -1,6 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import SignUp from "./SignUp";
-import "@testing-library/jest-dom";
 
 jest.mock("./utils/hooks/useHandleOnSubmitSignUp");
 

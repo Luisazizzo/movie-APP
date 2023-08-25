@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { EnumRoutes } from "../../../../../constants";
-import { logUser } from "../../../../../store/reduxSlices/usersSlice";
+import { logUser } from "../../../../../store/reduxSlices/userSlice/usersSlice";
 
 const useHandleOnSubmitLogIn = () => {
   const dispatch = useDispatch();

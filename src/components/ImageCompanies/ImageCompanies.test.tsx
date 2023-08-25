@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import ImageCompanies from "./ImageCompanies";
-import "@testing-library/jest-dom";
 
 const mockData = {
   id: 3,

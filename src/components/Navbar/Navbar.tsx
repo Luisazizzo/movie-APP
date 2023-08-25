@@ -7,7 +7,7 @@ import { FiMenu } from "react-icons/fi";
 import TendinaMenu from "../TendinaMenu/TendinaMenu";
 
 const Navbar = () => {
-  const [menu, setMenu] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const handleScroll = () => {
     const position = window.pageYOffset;
@@ -23,7 +23,7 @@ const Navbar = () => {
   }, []);
 
   const toggleMenu = useCallback(() => {
-    setMenu((prev) => !prev);
+    setIsVisible((prev) => !prev);
   }, []);
 
   return (
@@ -69,7 +69,7 @@ const Navbar = () => {
       <div className={styles.hamburgerMenu}>
         <FiMenu onClick={toggleMenu} />
       </div>
-      <TendinaMenu menu={menu} setMenu={setMenu} />
+      <TendinaMenu isVisible={isVisible} setIsVisible={setIsVisible} />
     </div>
   );
 };

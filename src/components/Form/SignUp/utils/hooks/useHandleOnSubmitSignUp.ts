@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { IFormValuesSignup } from "../../../../../interface";
 import { EnumRoutes } from "../../../../../constants";
-import { retrieveUser } from "../../../../../store/reduxSlices/usersSlice";
+import { retrieveUser } from "../../../../../store/reduxSlices/userSlice/usersSlice";
 
 const useHandleOnSubmitSignUp = () => {
   const dispatch = useDispatch();

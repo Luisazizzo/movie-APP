@@ -5,13 +5,14 @@ import { EnumRoutes } from "../../constants";
 import { useCallback } from "react";
 import { IMenuProps } from "../../interface";
 
-const TendinaMenu = ({ menu, setMenu }: IMenuProps) => {
+const TendinaMenu = ({ isVisible, setIsVisible }: IMenuProps) => {
   const closeMenu = useCallback(() => {
-    setMenu(false);
-  }, [setMenu]);
+    setIsVisible(false);
+  }, [setIsVisible]);
   return (
-    <div className={`${styles.TendinaMenu} ${menu && styles.show}`}>
+    <div className={`${styles.TendinaMenu} ${isVisible && styles.show}`}>
       <NavLink
+        data-testid="Home"
         to={`/${EnumRoutes.HOME}`}
         className={({ isActive }) => (isActive ? styles.active : "")}
       >

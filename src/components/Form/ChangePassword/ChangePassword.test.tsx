@@ -1,32 +1,25 @@
 import ChangePassword from "./ChangePassword";
 import { fireEvent, render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
-import usersSlice from "../../../store/reduxSlices/usersSlice";
+import { PreloadedState } from "@reduxjs/toolkit";
+import { RootState, setupStore } from "../../../store/store";
 
 jest.mock("./utils/hooks/useHandleOnSubmitChangePass");
 
 const closeModalMock = jest.fn();
 
-const mocklUser = {
-  username: "username",
-  password: "password",
-  email: "email",
-  isLogged: true,
+const preloadedState: PreloadedState<RootState> = {
+  usersSlice: {
+    username: "username",
+    password: "password",
+    email: "email",
+    isLogged: true,
+  },
 };
 
-const renderChangePassword = () => {
-  const store = configureStore({
-    reducer: {
-      usersSlice: usersSlice,
-    },
-    preloadedState: {
-      usersSlice: mocklUser,
-    },
-  });
-  return render(
-    <Provider store={store}>
+const renderChangePassword = (preloadedState?: PreloadedState<RootState>) => {
+  render(
+    <Provider store={setupStore(preloadedState)}>
       <ChangePassword closeModal={closeModalMock} />
     </Provider>
   );
@@ -34,13 +27,13 @@ const renderChangePassword = () => {
 
 describe("ChangePassword component", () => {
   test("Should render correctly", async () => {
-    renderChangePassword();
+    renderChangePassword(preloadedState);
     expect(await screen.findByText(/Old Password/)).toBeInTheDocument();
     expect(screen.getByRole("button")).toBeDisabled();
   });
 
   test("Button should be enabled if correct input values", () => {
-    renderChangePassword();
+    renderChangePassword(preloadedState);
     const inputOldPassword = screen.getAllByRole("textbox")[0];
     const inputNewPassword = screen.getAllByRole("textbox")[1];
     const inputConfirmPassword = screen.getAllByRole("textbox")[2];
@@ -54,7 +47,7 @@ describe("ChangePassword component", () => {
     expect(screen.queryByRole("button")).not.toBeDisabled();
   });
   test("Should render error messagges when input fields are not valid", async () => {
-    renderChangePassword();
+    renderChangePassword(preloadedState);
     const inputOldPassword = screen.getAllByRole("textbox")[0];
     const inputNewPassword = screen.getAllByRole("textbox")[1];
     const inputConfirmPassword = screen.getAllByRole("textbox")[2];

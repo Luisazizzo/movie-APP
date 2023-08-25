@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import Hero from "./Hero";
 import { Movies } from "../../interface";
-import "@testing-library/jest-dom";
 
 const mock: Movies = [
   {

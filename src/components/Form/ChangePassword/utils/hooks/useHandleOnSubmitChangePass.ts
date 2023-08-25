@@ -1,12 +1,15 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { changePass } from "../../../../../store/reduxSlices/usersSlice";
-import { IFormChangeProps, IFormValues } from "../../../../../interface";
+import { changePass } from "../../../../../store/reduxSlices/userSlice/usersSlice";
+import {
+  IChangePasswordProps,
+  IFormValuesChangePassword,
+} from "../../../../../interface";
 
-const useHandleOnSubmitChangePass = ({ closeModal }: IFormChangeProps) => {
+const useHandleOnSubmitChangePass = ({ closeModal }: IChangePasswordProps) => {
   const dispatch = useDispatch();
   const handleOnSubmitChangePassForm = useCallback(
-    (values: IFormValues) => {
+    (values: IFormValuesChangePassword) => {
       dispatch(changePass(values.confirmPassword));
       closeModal();
     },

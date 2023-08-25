@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { Companies } from "../../interface/IGetMovieDetails";
 import FooterDetails from "./FooterDetails";
-import "@testing-library/jest-dom";
 
 const mockData: Companies[] = [
   {

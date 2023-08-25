@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import styles from "./styles.module.scss";
 import { Link } from "react-router-dom";
-import { formatValue } from "../../../commons/utils/metod";
+import { formatValue } from "../../../commons/utils/method";
 import { ISectionRightProps } from "../../../interface";
 
 const SectionDetailsRight = ({ data }: ISectionRightProps) => {

@@ -4,7 +4,7 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routes/router";
-import { store } from "./store/store";
+import { setupStore } from "./store/store";
 import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(
@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <Provider store={store}>
+  <Provider store={setupStore()}>
     <RouterProvider router={router} />
   </Provider>
 );

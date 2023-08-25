@@ -7,7 +7,7 @@ jest.mock("react-redux", () => ({
   useDispatch: () => mockUseDispatch,
 }));
 
-jest.mock("../../../../../store/reduxSlices/usersSlice", () => ({
+jest.mock("../../../../../store/reduxSlices/userSlice/usersSlice.ts", () => ({
   logUser: () => jest.fn(),
 }));
 

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { IGetMovieDetails, Movies } from "../../interface";
+import { IGetMovieDetails, Movies } from "../../../interface";
 
 const initialState: Movies = [];
 
