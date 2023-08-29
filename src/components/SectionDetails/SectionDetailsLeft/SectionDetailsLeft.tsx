@@ -1,17 +1,14 @@
 import styles from "./styles.module.scss";
-import { useCallback, useMemo } from "react";
+import { useMemo } from "react";
 import { invertDate, invertMinutes } from "../../../commons/utils/method";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { ISectionLeftProps } from "../../../interface";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addFavorites,
-  deleteFavorites,
-} from "../../../store/reduxSlices/favoriteSlice/favoriteSlice";
+import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
+import useFavorite from "./hook/useFavorite";
 
 const SectionDetailsLeft = ({ data }: ISectionLeftProps) => {
-  const dispatch = useDispatch();
+  const { addfavorite, deleteFavorite } = useFavorite(data);
   const stateFavorite = useSelector((state: RootState) => state.favoriteSlice);
 
   const adultDot = useMemo(() => {
@@ -41,14 +38,6 @@ const SectionDetailsLeft = ({ data }: ISectionLeftProps) => {
       </p>
     );
   }, [data.overview]);
-
-  const addfavorite = useCallback(() => {
-    dispatch(addFavorites(data));
-  }, [data, dispatch]);
-
-  const deleteFavorite = useCallback(() => {
-    dispatch(deleteFavorites(data.id));
-  }, [data, dispatch]);
 
   const controlledHeart = useMemo(() => {
     if (stateFavorite.find((item) => item.id === data.id)) {

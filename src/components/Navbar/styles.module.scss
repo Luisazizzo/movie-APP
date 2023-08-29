@@ -13,12 +13,7 @@
     text-decoration: none;
     color: #ffffff93;
   }
-  a.active {
-    color: #fff;
-  }
-  &.scrolled {
-    background-color: #000;
-  }
+
   .logo {
     color: #e50914;
     cursor: pointer;
@@ -34,17 +29,10 @@
     .authIcon {
       color: #ffffff93;
       cursor: pointer;
-
-      &.active {
-        color: #fff;
-      }
     }
     .iconSearch {
       color: #ffffff93;
       cursor: pointer;
-      &.active {
-        color: #fff;
-      }
     }
   }
   .hamburgerMenu {

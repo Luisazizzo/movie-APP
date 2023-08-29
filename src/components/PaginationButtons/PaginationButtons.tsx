@@ -1,23 +1,14 @@
 import styles from "./style.module.scss";
 import { IPaginationProps } from "../../interface";
-import { useCallback } from "react";
+import usePagination from "./hook/usePagination";
 
-const PaginationButtons = ({
-  page,
-  setPage,
-  totalPages = 0,
-}: IPaginationProps) => {
-  const nextPage = useCallback(() => {
-    if (page < totalPages) {
-      setPage((prev) => prev + 1);
-    }
-  }, [page, totalPages, setPage]);
-  const previousPage = useCallback(() => {
-    setPage((prev) => prev - 1);
-  }, [setPage]);
+const PaginationButtons = ({ page, setPage, totalPages }: IPaginationProps) => {
+  const { nextPage, previousPage } = usePagination(setPage);
+
   return (
     <div className={styles.Buttons}>
       <button
+        data-testid="button-previous"
         className={`${page === 1 && styles.trasparent}`}
         disabled={page === 1}
         onClick={previousPage}
