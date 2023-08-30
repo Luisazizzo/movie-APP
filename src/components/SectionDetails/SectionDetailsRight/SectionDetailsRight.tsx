@@ -14,13 +14,13 @@ const SectionDetailsRight = ({ data }: ISectionRightProps) => {
         </p>
       );
     }
-  }, [data?.revenue]);
+  }, [data.revenue]);
 
   const judgment = useMemo(() => {
     if (data.vote_count && data.vote_average) {
       return (
         <p>
-          <b>Voto:</b> {data.vote_average.toFixed(1)} su {data.vote_count}{" "}
+          <b>Voto:</b> {data.vote_average.toFixed(1)} su {data.vote_count}
           giudizi
         </p>
       );
@@ -37,7 +37,7 @@ const SectionDetailsRight = ({ data }: ISectionRightProps) => {
         </cite>
       );
     }
-  }, [data?.tagline]);
+  }, [data.tagline]);
 
   return (
     <div className={styles.moreInfo}>

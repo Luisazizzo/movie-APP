@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Genres } from "../interface/IGenre";
 import { EnumBaseUrl } from "../constants/enumBaseUrl";
 import {
   IGetMoviesRes,
@@ -25,9 +24,9 @@ export const movieApi = createApi({
     getMoviesByRated: builder.query<IGetMoviesRes, number>({
       query: (page) => `movie/upcoming?language=it-IT&page=${page}`,
     }),
-    getGenres: builder.query<Genres, void>({
-      query: () => "genre/movie/list",
-    }),
+    // getGenres: builder.query<Genres, void>({
+    //   query: () => "genre/movie/list",
+    // }),
     getIdParams: builder.query<IGetMovieDetails, string>({
       query: (id) => `movie/${id}?language=it-IT`,
     }),
@@ -43,7 +42,6 @@ export const movieApi = createApi({
 
 export const {
   useGetMoviesByRatedQuery,
-  useGetGenresQuery,
   useGetIdParamsQuery,
   useGetVideosIdQuery,
   useGetSearchMovieQuery,

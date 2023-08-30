@@ -10,12 +10,16 @@ jest.mock("./hook/usePagination", () => () => ({
   previousePage: () => mockPrevisionPage,
 }));
 
-const renderPaginationButtons = () =>
-  render(<PaginationButtons page={1} setPage={setPage} totalPages={1} />);
+const renderPaginationButtons = (number: number) =>
+  render(<PaginationButtons page={number} setPage={setPage} totalPages={10} />);
 
 describe("PaginationButtons component", () => {
-  test("should render component", () => {
-    renderPaginationButtons();
-    expect(screen.getByTestId("button-previous")).toBeInTheDocument();
+  test("should the button be disabled if the page is one", () => {
+    renderPaginationButtons(1);
+    expect(screen.getByTestId("button-previous")).toBeDisabled();
+  });
+  test("should the button be disabled if the page is equal totalPages", () => {
+    renderPaginationButtons(10);
+    expect(screen.getByTestId("button-next")).toBeDisabled();
   });
 });

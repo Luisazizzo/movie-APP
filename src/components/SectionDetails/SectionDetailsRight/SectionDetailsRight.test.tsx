@@ -1,12 +1,9 @@
-import { renderHook } from "@testing-library/react";
-import useFavorite from "./useFavorite";
-import { IGetMovieDetails } from "../../../../interface";
+import { render, screen } from "@testing-library/react";
+import { IGetMovieDetails } from "../../../interface";
+import SectionDetailsRight from "./SectionDetailsRight";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 
-const mockUseDispatch = jest.fn();
-jest.mock("react-redux", () => ({
-  ...jest.requireActual("react-redux"),
-  useDispatch: () => mockUseDispatch,
-}));
+jest.mock("../../../commons/utils/method");
 
 const details: IGetMovieDetails = {
   adult: false,
@@ -36,17 +33,19 @@ const details: IGetMovieDetails = {
   vote_average: 8.271,
   vote_count: 2220,
 };
-describe("useFavorite", () => {
-  test("should add favorite", () => {
-    const { result } = renderHook(() => useFavorite(details));
-   
-    result.current.addfavorite();
-    expect(mockUseDispatch).toHaveBeenCalled();
-  });
-  test("should remove favorite", () => {
-    const { result } = renderHook(() => useFavorite(details));
-    
-    result.current.deleteFavorite();
-    expect(mockUseDispatch).toHaveBeenCalled();
+
+const renderSectionDetailsRight = () =>
+  render(
+    <BrowserRouter>
+      <SectionDetailsRight data={details} />
+    </BrowserRouter>
+  );
+
+describe("SectionDetailsRight", () => {
+  test("should controlled revenue", () => {
+    renderSectionDetailsRight();
+    expect(screen.getByText(/Incasso attuale:/)).toBeInTheDocument();
+    expect(screen.getByText(/Voto:/)).toBeInTheDocument();
+    expect(screen.getByText(details.tagline)).toBeInTheDocument();
   });
 });

@@ -19,6 +19,7 @@ const PaginationButtons = ({ page, setPage, totalPages }: IPaginationProps) => {
       <p className={styles.page}>{page}</p>
       <p className={`${page === totalPages && styles.none}`}>{page + 1}</p>
       <button
+        data-testid="button-next"
         className={`${page === totalPages && styles.trasparent}`}
         disabled={page === totalPages}
         onClick={nextPage}

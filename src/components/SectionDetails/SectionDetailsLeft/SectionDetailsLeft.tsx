@@ -1,4 +1,5 @@
 import styles from "./styles.module.scss";
+import "./styles.css";
 import { useMemo } from "react";
 import { invertDate, invertMinutes } from "../../../commons/utils/method";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
@@ -15,18 +16,18 @@ const SectionDetailsLeft = ({ data }: ISectionLeftProps) => {
     if (data.adult) {
       return (
         <div className={styles.categoria}>
-          <div className={styles.adulti_true}></div>
+          <div data-testid="adult_true" className="adulti_true"></div>
           <p>18 +</p>
         </div>
       );
     }
     return (
       <div className={styles.categoria}>
-        <div className={styles.adulti_false}></div>
+        <div data-testid="adult_false" className="adulti_false"></div>
         <p>Per tutti</p>
       </div>
     );
-  }, [data?.adult]);
+  }, [data.adult]);
 
   const controlledOverwie = useMemo(() => {
     if (data.overview) {
