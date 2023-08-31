@@ -11,7 +11,7 @@ const Home = () => {
 
   const { data, isLoading, isFetching } = useGetMoviesByRatedQuery(page);
 
-  const controlled = useMemo(() => {
+  const listControlled = useMemo(() => {
     if (isLoading || isFetching) {
       return (
         <div className={styles.loader}>
@@ -19,19 +19,34 @@ const Home = () => {
         </div>
       );
     }
-    return <ListCard movies={data?.results} />;
-  }, [data?.results, isFetching, isLoading]);
+    if (data) {
+      return <ListCard movies={data.results} />;
+    }
+  }, [data, isFetching, isLoading]);
 
+  const heroControlled = useMemo(() => {
+    if (data) {
+      return <Hero list={data.results} />;
+    }
+  }, [data]);
+
+  const paginationControlled = useMemo(() => {
+    if (data) {
+      return (
+        <PaginationButtons
+          totalPages={data.total_pages}
+          page={page}
+          setPage={setPage}
+        />
+      );
+    }
+  }, [data, page]);
   return (
     <div className={styles.Home}>
-      <Hero list={data?.results} />
+      {heroControlled}
       {!isLoading && <h2 className={styles.title}>In arrivo</h2>}
-      {controlled}
-      <PaginationButtons
-        totalPages={data?.total_pages}
-        page={page}
-        setPage={setPage}
-      />
+      {listControlled}
+      {paginationControlled}
     </div>
   );
 };

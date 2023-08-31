@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { IGetMovieDetails } from "../../../interface";
 import SectionDetailsRight from "./SectionDetailsRight";
-import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 jest.mock("../../../commons/utils/method");
 
@@ -42,10 +42,12 @@ const renderSectionDetailsRight = () =>
   );
 
 describe("SectionDetailsRight", () => {
-  test("should controlled revenue", () => {
-    renderSectionDetailsRight();
-    expect(screen.getByText(/Incasso attuale:/)).toBeInTheDocument();
-    expect(screen.getByText(/Voto:/)).toBeInTheDocument();
-    expect(screen.getByText(details.tagline)).toBeInTheDocument();
-  });
+  test.each([/Incasso attuale:/, /Voto:/, details.tagline])(
+    "should render the SectionDetailsRight component if correct text",
+    (textValue) => {
+      renderSectionDetailsRight();
+
+      expect(screen.getByText(textValue)).toBeInTheDocument();
+    }
+  );
 });

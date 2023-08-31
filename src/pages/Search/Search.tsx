@@ -12,7 +12,7 @@ const SearchPage = () => {
     skip: searchValue.length <= 1,
   });
 
-  const controlled = useMemo(() => {
+  const controlledLoader = useMemo(() => {
     if (isLoading || isFetching) {
       return (
         <div className={styles.loader}>
@@ -24,7 +24,7 @@ const SearchPage = () => {
 
   const controlledResults = useMemo(() => {
     if (!isLoading || !isFetching) {
-      if (data?.results?.length) {
+      if (data?.results.length) {
         return <ListCard movies={data.results} />;
       }
       return (
@@ -50,7 +50,7 @@ const SearchPage = () => {
       />
 
       {controlledResults}
-      {controlled}
+      {controlledLoader}
     </div>
   );
 };

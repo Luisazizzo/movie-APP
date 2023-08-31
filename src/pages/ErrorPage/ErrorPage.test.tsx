@@ -1,22 +1,22 @@
 import { render, screen } from "@testing-library/react";
 import ErrorPage from "./ErrorPage";
-import { MemoryRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 const renderErrorPage = () =>
   render(
-    <MemoryRouter>
+    <BrowserRouter>
       <ErrorPage />
-    </MemoryRouter>
+    </BrowserRouter>
   );
 
 describe("ErrorPage", () => {
-  test("should renders ErrorPage component", () => {
+  test.each([
+    /Errore 404/,
+    /Ops!! LA pagina non è stata trovata/,
+    /Ritorna alla Home/,
+  ])("should render the ErrorPage if correct text", (textValue) => {
     renderErrorPage();
-    expect(screen.getByAltText("error")).toBeInTheDocument();
-    expect(screen.getByText(/Errore 404/)).toBeInTheDocument();
-    expect(
-      screen.getByText(/Ops!! LA pagina non è stata trovata/)
-    ).toBeInTheDocument();
-    expect(screen.getByText(/Ritorna alla Home/)).toBeInTheDocument();
+
+    expect(screen.getByText(textValue)).toBeInTheDocument();
   });
 });

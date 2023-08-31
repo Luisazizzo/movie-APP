@@ -37,7 +37,7 @@ const Profile = () => {
     setOpen(true);
   }, []);
 
-  const handleOk = useCallback(() => {
+  const handleConfirmPopup = useCallback(() => {
     setConfirmLoading(true);
     dispatch(removeUser());
     navigate(EnumRoutes.BASE);
@@ -45,7 +45,7 @@ const Profile = () => {
     setConfirmLoading(false);
   }, [dispatch, navigate]);
 
-  const handleCancel = useCallback(() => {
+  const handleCancelPopup = useCallback(() => {
     setOpen(false);
   }, []);
 
@@ -72,9 +72,9 @@ const Profile = () => {
           title="Delete Account"
           description="Are you sure you want to delete the account"
           open={open}
-          onConfirm={handleOk}
+          onConfirm={handleConfirmPopup}
           okButtonProps={{ loading: confirmLoading }}
-          onCancel={handleCancel}
+          onCancel={handleCancelPopup}
         >
           <Button
             className={styles.button}
