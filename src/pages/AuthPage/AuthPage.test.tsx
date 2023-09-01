@@ -3,7 +3,6 @@ import AuthPage from "./AuthPage";
 import { RootState, setupStore } from "../../store/store";
 import { Provider } from "react-redux";
 import { render, screen } from "@testing-library/react";
-import { usersSlice } from "../../store/reduxSlices/userSlice/usersSlice";
 
 const mockNavigate = jest.fn();
 jest.mock("react-router-dom", () => ({
