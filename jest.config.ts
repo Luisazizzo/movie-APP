@@ -13,6 +13,7 @@ const config = {
   transformIgnorePatterns: ["<rootDir>/node_modules/"],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
   setupFilesAfterEnv: ["./jest.setup.js", "<rootDir>/src/setupTests.ts"],
+  collectCoverageFrom: ["<rootDir>/src/**"],
 };
 
 export default config;

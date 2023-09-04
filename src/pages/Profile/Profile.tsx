@@ -1,53 +1,25 @@
-import React, { useCallback, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import styles from "./styles.module.scss";
 import { RootState } from "../../store/store";
 import { Button, Popconfirm, Space } from "antd";
-import { useNavigate } from "react-router-dom";
-import { EnumRoutes } from "../../constants/enumRoutes";
 import ModalChange from "../../components/ModalChange/ModalChange";
-import {
-  logUser,
-  removeUser,
-} from "../../store/reduxSlices/userSlice/usersSlice";
 import ChangePassword from "../../components/Form/ChangePassword/ChangePassword";
+import useLogOut from "./hooks/useLogOut/useLogOut";
+import useModal from "./hooks/useModal/useModal";
+import usePopup from "./hooks/usePopup/usePopup";
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const logOut = useLogOut();
+  const { closeModal, showModal } = useModal(setIsModalOpen);
+  const { showPopconfirm, handleCancelPopup, handleConfirmPopup } = usePopup(
+    setOpen,
+    setConfirmLoading
+  );
   const userData = useSelector((state: RootState) => state.usersSlice);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const logOut = useCallback(() => {
-    dispatch(logUser(false));
-    navigate(EnumRoutes.BASE);
-  }, [dispatch, navigate]);
-
-  const showModal = useCallback(() => {
-    setIsModalOpen(true);
-  }, []);
-
-  const closeModal = useCallback(() => {
-    setIsModalOpen(false);
-  }, []);
-
-  const showPopconfirm = useCallback(() => {
-    setOpen(true);
-  }, []);
-
-  const handleConfirmPopup = useCallback(() => {
-    setConfirmLoading(true);
-    dispatch(removeUser());
-    navigate(EnumRoutes.BASE);
-    setOpen(false);
-    setConfirmLoading(false);
-  }, [dispatch, navigate]);
-
-  const handleCancelPopup = useCallback(() => {
-    setOpen(false);
-  }, []);
 
   return (
     <div className={styles.profile}>

@@ -33,7 +33,6 @@ const SearchPage = () => {
         </div>
       );
     }
-    return <></>;
   }, [data?.results, isFetching, isLoading]);
 
   return (
