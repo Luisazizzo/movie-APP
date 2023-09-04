@@ -1,10 +1,9 @@
 import { NavLink } from "react-router-dom";
 import styles from "./styles.module.scss";
 import "./styles.css";
-import { BiSearch, BiUser } from "react-icons/bi";
-import { EnumRoutes } from "../../constants";
 import { useCallback } from "react";
 import { IMenuProps } from "../../interface";
+import { navLinks } from "../../mock/mockLinks";
 
 const MobileMenu = ({ isVisible, setIsVisible }: IMenuProps) => {
   const closeMenu = useCallback(() => {
@@ -12,38 +11,18 @@ const MobileMenu = ({ isVisible, setIsVisible }: IMenuProps) => {
   }, [setIsVisible]);
   return (
     <div className={`${styles.MobileMenu} ${isVisible && styles.show}`}>
-      <NavLink
-        data-testid="home-mobile"
-        to={`/${EnumRoutes.HOME}`}
-        className={({ isActive }) => (isActive ? "active" : "")}
-      >
-        <p onClick={closeMenu}>Home</p>
-      </NavLink>
-      <NavLink
-        data-testid="favorite-mobile"
-        to={`/${EnumRoutes.FAVORITE}`}
-        className={({ isActive }) => (isActive ? "active" : "")}
-      >
-        <p onClick={closeMenu}>La mia lista</p>
-      </NavLink>
-      <NavLink
-        data-testid="profile-mobile"
-        to={`/${EnumRoutes.PROFILE}`}
-        className={({ isActive }) => (isActive ? "active" : styles.authIcon)}
-      >
-        <p onClick={closeMenu}>
-          Profilo <BiUser />
-        </p>
-      </NavLink>
-      <NavLink
-        data-testid="search-mobile"
-        to={`/${EnumRoutes.SEARCH}`}
-        className={({ isActive }) => (isActive ? "active" : styles.iconSearch)}
-      >
-        <p onClick={closeMenu}>
-          Ricerca <BiSearch />
-        </p>
-      </NavLink>
+      {navLinks.map((link) => (
+        <NavLink
+          key={link.route}
+          to={`/${link.route}`}
+          data-testid={link.testId}
+          className={({ isActive }) =>
+            isActive ? `${link.activeClassName}` : ""
+          }
+        >
+          <p onClick={closeMenu}>{link.label}</p>
+        </NavLink>
+      ))}
     </div>
   );
 };

@@ -28,7 +28,7 @@ jest.mock("react-router-dom", () => ({
   useParams: () => jest.fn().mockReturnValue({ id: "123" }),
 }));
 
-const mockDetails: IGetMovieDetails = {
+const mockData: IGetMovieDetails = {
   adult: false,
   backdrop_path: "/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg",
   belongs_to_collection: null,
@@ -63,29 +63,31 @@ const mockDetails: IGetMovieDetails = {
 
 jest.mock("../../api/movieApi", () => ({
   ...jest.requireActual("../../api/movieApi"),
-  mockedUseGetIdParamsQuery: jest.fn(),
+  useGetIdParamsQuery: jest.fn(),
 }));
 
 const mockedUseGetIdParamsQuery = jest.mocked(useGetIdParamsQuery);
 
-const mockReturnDetails = (data: IGetMovieDetails | undefined = undefined) => {
+const mockReturn = (data: IGetMovieDetails | undefined = undefined) => {
   mockedUseGetIdParamsQuery.mockReturnValueOnce({
     refetch: jest.fn(),
     data,
   });
 };
 
-const renderDetailsPage = () =>
+const renderDetailsPage = () => {
+  mockReturn(mockData);
   render(
     <Provider store={setupStore()}>
       <Details />
     </Provider>
   );
+};
 
 describe("Details page", () => {
   test("should render sectionDetailsLeft", () => {
-    mockReturnDetails(mockDetails);
+    mockReturn(mockData);
     renderDetailsPage();
-    expect(screen.getByTestId("sectionDetailsRight")).toBeInTheDocument();
+    expect(screen.getByTestId("sectionDetailsLeft")).toBeInTheDocument();
   });
 });

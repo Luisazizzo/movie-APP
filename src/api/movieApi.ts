@@ -1,11 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { EnumBaseUrl } from "../constants/enumBaseUrl";
-import {
-  IGetMoviesRes,
-  IGetMovieDetails,
-  IGetIdVideos,
-  IGetSearch,
-} from "../interface";
+import { IGetMoviesRes, IGetMovieDetails, IGetSearch } from "../interface";
 
 export const movieApi = createApi({
   reducerPath: "movieApi",

@@ -21,18 +21,18 @@ describe("TendinaMenu", () => {
 
   test("Should add class active if path is home", () => {
     renderMobileMenu({ pathname: `/${EnumRoutes.HOME}` });
-    expect(screen.getByTestId("home-mobile")).toHaveClass("active");
+    expect(screen.getByTestId("home-nav")).toHaveClass("active");
   });
   test("Should add class active if path is favorite", () => {
     renderMobileMenu({ pathname: `/${EnumRoutes.FAVORITE}` });
-    expect(screen.getByTestId("favorite-mobile")).toHaveClass("active");
+    expect(screen.getByTestId("favorite-nav")).toHaveClass("active");
   });
   test("Should add class active if path is profile", () => {
     renderMobileMenu({ pathname: `/${EnumRoutes.PROFILE}` });
-    expect(screen.getByTestId("profile-mobile")).toHaveClass("active");
+    expect(screen.getByTestId("profile-nav")).toHaveClass("active");
   });
   test("Should add class active if path is search", () => {
     renderMobileMenu({ pathname: `/${EnumRoutes.SEARCH}` });
-    expect(screen.getByTestId("search-mobile")).toHaveClass("active");
+    expect(screen.getByTestId("search-nav")).toHaveClass("active");
   });
 });
