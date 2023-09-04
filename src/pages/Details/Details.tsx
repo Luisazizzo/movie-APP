@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useGetIdParamsQuery, useGetVideosIdQuery } from "../../api/movieApi";
+import { useGetIdParamsQuery } from "../../api/movieApi";
 import styles from "./styles.module.scss";
 import { useEffect, useMemo } from "react";
 import { EnumBaseUrl, EnumSizeImage } from "../../constants";
@@ -11,7 +11,6 @@ import GenresList from "../../components/GenresList/GenresList";
 const Details = () => {
   const { id } = useParams();
   const { data } = useGetIdParamsQuery(id as string);
-  const { data: idVideo } = useGetVideosIdQuery(data?.id as number);
 
   useEffect(() => {
     document.title = data ? `${data.title} - FILMFLIX ™` : "FILMFLIX ™";
@@ -21,10 +20,10 @@ const Details = () => {
   }, [data]);
 
   const heroDetails = useMemo(() => {
-    if (idVideo?.results[0]?.key) {
+    if (data?.videos.results[0].key) {
       return (
         <iframe
-          src={`https://www.youtube.com/embed/${idVideo?.results[0].key}`}
+          src={`https://www.youtube.com/embed/${data?.videos.results[0].key}`}
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -38,7 +37,7 @@ const Details = () => {
         alt="Copertina"
       />
     );
-  }, [data?.poster_path, idVideo?.results]);
+  }, [data?.poster_path, data?.videos.results]);
 
   const dataControlled = useMemo(() => {
     if (data) {
@@ -67,7 +66,6 @@ const Details = () => {
     <div className={styles.Details}>
       {heroDetails}
       <div className={styles.genres}>{genresControlled}</div>
-
       <div className={styles.content}>{dataControlled}</div>
       <FooterDetails companies={data?.production_companies} />
     </div>

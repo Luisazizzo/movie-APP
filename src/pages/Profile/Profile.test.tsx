@@ -31,7 +31,7 @@ jest.mock("../../components/Form/ChangePassword/ChangePassword", () => () => (
 
 jest.mock("antd", () => ({
   ...jest.requireActual("antd"),
-  Button: jest.fn(() => <div>{"Disconnetti"}</div>),
+  Button: jest.fn(() => <div>Disconnetti</div>),
   Popconfirm: jest.fn(({ title }) => <div>{title}</div>),
   Space: jest.fn(() => <div data-testid="space" />),
 }));

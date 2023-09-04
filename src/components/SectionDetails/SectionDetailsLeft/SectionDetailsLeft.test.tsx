@@ -56,6 +56,10 @@ const details: IGetMovieDetails = {
   tagline: "Il mondo cambia per sempre",
   title: "Oppenheimer",
   video: false,
+  videos: {
+    id: 0,
+    results: [],
+  },
   vote_average: 8.271,
   vote_count: 2220,
 };

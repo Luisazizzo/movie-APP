@@ -1,3 +1,5 @@
+import { IGetIdVideos } from "./IGetIdVideos";
+
 export interface IGetMovieDetails {
   adult: boolean;
   backdrop_path: string;
@@ -22,6 +24,7 @@ export interface IGetMovieDetails {
   tagline: string;
   title: string;
   video: boolean;
+  videos: IGetIdVideos;
   vote_average: number;
   vote_count: number;
 }

@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 import {
   useGetMoviesByRatedQuery,
   useGetIdParamsQuery,
-  useGetVideosIdQuery,
   useGetSearchMovieQuery,
 } from "./movieApi";
 import { setupStore } from "../store/store";
@@ -34,19 +33,6 @@ describe("movieApi", () => {
     expect(result.current).toMatchObject({
       status: "pending",
       endpointName: "getIdParams",
-      isLoading: true,
-      isSuccess: false,
-      isError: false,
-      isFetching: true,
-    });
-  });
-  test("should get video movies", () => {
-    const { result } = renderHook(() => useGetVideosIdQuery(12345), {
-      wrapper: Wrapper,
-    });
-    expect(result.current).toMatchObject({
-      status: "pending",
-      endpointName: "getVideosId",
       isLoading: true,
       isSuccess: false,
       isError: false,

@@ -24,14 +24,8 @@ export const movieApi = createApi({
     getMoviesByRated: builder.query<IGetMoviesRes, number>({
       query: (page) => `movie/upcoming?language=it-IT&page=${page}`,
     }),
-    // getGenres: builder.query<Genres, void>({
-    //   query: () => "genre/movie/list",
-    // }),
     getIdParams: builder.query<IGetMovieDetails, string>({
-      query: (id) => `movie/${id}?language=it-IT`,
-    }),
-    getVideosId: builder.query<IGetIdVideos, number>({
-      query: (id) => `movie/${id}/videos?language=it-IT`,
+      query: (id) => `movie/${id}?append_to_response=videos`,
     }),
     getSearchMovie: builder.query<IGetSearch, string>({
       query: (search) =>
@@ -43,6 +37,5 @@ export const movieApi = createApi({
 export const {
   useGetMoviesByRatedQuery,
   useGetIdParamsQuery,
-  useGetVideosIdQuery,
   useGetSearchMovieQuery,
 } = movieApi;

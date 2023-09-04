@@ -40,6 +40,7 @@ const SearchPage = () => {
       <h2>Ricerca</h2>
 
       <Input
+        data-testid="search"
         className={styles.inputSearch}
         onChange={(e) => {
           setSearchValue(e.target.value);

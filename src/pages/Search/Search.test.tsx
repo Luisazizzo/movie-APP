@@ -9,11 +9,6 @@ jest.mock("../../components/ListCard/ListCard", () => () => (
   <div data-testid="list" />
 ));
 
-jest.mock("antd", () => ({
-  ...jest.requireActual("antd"),
-  Input: jest.fn(() => <input data-testid="search" />),
-}));
-
 jest.mock("react-icons/ri", () => ({
   ...jest.requireActual("react-icons/ri"),
   RiLoader4Fill: () => <div data-testid="icon" />,
@@ -57,7 +52,7 @@ const renderSearchPage = () =>
       <SearchPage />
     </Provider>
   );
-const mockSetSearchValue = jest.fn();
+
 describe("Search Page", () => {
   test("should render search page", () => {
     mockReturn(mockData);
@@ -65,14 +60,21 @@ describe("Search Page", () => {
     expect(screen.getByTestId("list")).toBeInTheDocument();
   });
 
-  test("should render icon", () => {
+  test("should render loading icon", () => {
     mockReturn(mockData, true);
     renderSearchPage();
     expect(screen.getByTestId("icon")).toBeInTheDocument();
   });
-  test("should render not result if data lenght is minor of one", () => {
+  test("should not render results if data lenght is falsy", () => {
     mockReturn();
     renderSearchPage();
     expect(screen.getByText(/Nessun risultato/)).toBeInTheDocument();
+  });
+  test("should render input for search movie", () => {
+    mockReturn(mockData);
+    renderSearchPage();
+    const valueSearchInput = screen.getByTestId("search");
+    fireEvent.change(valueSearchInput, { target: { value: "title" } });
+    expect(valueSearchInput).toHaveValue("title");
   });
 });
