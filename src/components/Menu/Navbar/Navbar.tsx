@@ -1,12 +1,12 @@
 import styles from "./styles.module.scss";
 import "./styles.css";
 import { NavLink } from "react-router-dom";
-import { EnumRoutes } from "../../constants";
+import { EnumRoutes } from "../../../constants/enumRoutes";
 import { useCallback, useMemo, useState } from "react";
 import { FiMenu } from "react-icons/fi";
-import MobileMenu from "../MobileMenu/MobileMenu";
+import MobileMenu from "../../Menu/MobileMenu/MobileMenu";
 import useHandleScroll from "./hook/useHandleScroll";
-import { navLinks } from "../../mock/mockLinks";
+import { navLinks } from "../constants/mockLinks";
 
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(false);

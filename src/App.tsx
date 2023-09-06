@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import styles from "./App.module.scss";
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/Menu/Navbar/Navbar";
 import { Outlet, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { retrieveUser } from "./store/reduxSlices/userSlice/usersSlice";

@@ -1,16 +1,17 @@
 import React from "react";
-import { createBrowserRouter } from "react-router-dom";
-import Favorite from "../pages/Favorite/Favorite";
-import AuthPage from "../pages/AuthPage/AuthPage";
-import ErrorPage from "../pages/ErrorPage/ErrorPage";
-import Home from "../pages/Home/Home";
 import App from "../App";
 import { EnumRoutes } from "../constants";
-import Profile from "../pages/Profile/Profile";
-import Details from "../pages/Details/Details";
-import Search from "../pages/Search/Search";
+import {
+  AuthPage,
+  Details,
+  ErrorPage,
+  Favorite,
+  Home,
+  Profile,
+  Search,
+} from "../pages";
 
-export const router = createBrowserRouter([
+export const routerConfig = [
   {
     path: EnumRoutes.BASE,
     element: <App />,
@@ -46,4 +47,4 @@ export const router = createBrowserRouter([
     path: EnumRoutes.ERROR,
     element: <ErrorPage />,
   },
-]);
+];

@@ -1,4 +1,4 @@
-import { EnumRoutes } from "../constants";
+import { EnumRoutes } from "../../../constants";
 import { BiSearch, BiUser } from "react-icons/bi";
 
 export const navLinks = [

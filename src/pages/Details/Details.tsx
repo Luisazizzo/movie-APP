@@ -23,7 +23,8 @@ const Details = () => {
     if (data?.videos.results[0].key) {
       return (
         <iframe
-          src={`https://www.youtube.com/embed/${data?.videos.results[0].key}`}
+          data-testid="iframe"
+          src={`https://www.youtube.com/embed/${data.videos.results[0].key}`}
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -58,7 +59,7 @@ const Details = () => {
 
   const genresControlled = useMemo(() => {
     if (data?.genres) {
-      return <GenresList genresList={data?.genres} />;
+      return <GenresList genresList={data.genres} />;
     }
   }, [data?.genres]);
 

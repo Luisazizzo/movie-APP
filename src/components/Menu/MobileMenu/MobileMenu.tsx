@@ -2,8 +2,8 @@ import { NavLink } from "react-router-dom";
 import styles from "./styles.module.scss";
 import "./styles.css";
 import { useCallback } from "react";
-import { IMenuProps } from "../../interface";
-import { navLinks } from "../../mock/mockLinks";
+import { IMenuProps } from "../../../interface";
+import { navLinks } from "../constants/mockLinks";
 
 const MobileMenu = ({ isVisible, setIsVisible }: IMenuProps) => {
   const closeMenu = useCallback(() => {

@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import Navbar from "./Navbar";
 import { MemoryRouter } from "react-router-dom";
-import { EnumRoutes } from "../../constants";
+import { EnumRoutes } from "../../../constants/enumRoutes";
 import useHandleScroll from "./hook/useHandleScroll";
 
 jest.mock("./hook/useHandleScroll");

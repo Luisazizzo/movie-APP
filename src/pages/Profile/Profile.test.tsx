@@ -11,6 +11,7 @@ const mockHandleCancelPopup = jest.fn();
 const mockHandleConfirmPopup = jest.fn();
 
 jest.mock("./hooks/useLogOut/useLogOut");
+
 jest.mock("./hooks/useModal/useModal", () => () => ({
   closeModal: () => mockCloseModal,
   showModal: () => mockShowModal,

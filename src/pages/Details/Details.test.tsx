@@ -4,6 +4,7 @@ import { IGetMovieDetails } from "../../interface";
 import Details from "./Details";
 import { render, screen } from "@testing-library/react";
 import { setupStore } from "../../store/store";
+import { IVideoResults } from "../../interface/IGetIdVideos";
 
 jest.mock(
   "../../components/SectionDetails/SectionDetailsRight/SectionDetailsRight",
@@ -28,7 +29,7 @@ jest.mock("react-router-dom", () => ({
   useParams: () => jest.fn().mockReturnValue({ id: "123" }),
 }));
 
-const mockData: IGetMovieDetails = {
+const mockData = (video?: IVideoResults): IGetMovieDetails => ({
   adult: false,
   backdrop_path: "/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg",
   belongs_to_collection: null,
@@ -55,10 +56,23 @@ const mockData: IGetMovieDetails = {
   video: false,
   videos: {
     id: 0,
-    results: [],
+    results: video ? [video] : [],
   },
   vote_average: 8.271,
   vote_count: 2220,
+});
+
+const mockVideo = {
+  id: "id",
+  iso_639_1: " iso_639_1",
+  iso_3166_1: "iso_3166_1",
+  key: "key",
+  name: "name",
+  official: true,
+  published_at: "published_at",
+  site: "site",
+  size: 5,
+  type: "type",
 };
 
 jest.mock("../../api/movieApi", () => ({
@@ -69,14 +83,13 @@ jest.mock("../../api/movieApi", () => ({
 const mockedUseGetIdParamsQuery = jest.mocked(useGetIdParamsQuery);
 
 const mockReturn = (data: IGetMovieDetails | undefined = undefined) => {
-  mockedUseGetIdParamsQuery.mockReturnValueOnce({
+  mockedUseGetIdParamsQuery.mockReturnValue({
     refetch: jest.fn(),
     data,
   });
 };
 
 const renderDetailsPage = () => {
-  mockReturn(mockData);
   render(
     <Provider store={setupStore()}>
       <Details />
@@ -85,9 +98,32 @@ const renderDetailsPage = () => {
 };
 
 describe("Details page", () => {
-  test("should render sectionDetailsLeft", () => {
-    mockReturn(mockData);
+  test.each(["sectionDetailsLeft", "sectionDetailsRight"])(
+    "should render sectionDetailsLeft and sectionDetailsRight if data is found",
+    (value) => {
+      mockReturn(mockData(mockVideo));
+      renderDetailsPage();
+      expect(screen.getByTestId(value)).toBeInTheDocument();
+    }
+  );
+  test("should render paragraph if data is undefined", () => {
+    mockReturn();
     renderDetailsPage();
-    expect(screen.getByTestId("sectionDetailsLeft")).toBeInTheDocument();
+    expect(screen.getByText(/Dettagli non disponibili/)).toBeInTheDocument();
+  });
+  test("should render GenresList component if data is found", () => {
+    mockReturn(mockData(mockVideo));
+    renderDetailsPage();
+    expect(screen.getByTestId("genresList")).toBeInTheDocument();
+  });
+  test("should render video if is defined", () => {
+    mockReturn(mockData(mockVideo));
+    renderDetailsPage();
+    expect(screen.getByTestId("iframe")).toBeInTheDocument();
+  });
+  test("should render image if video is undefined e image is defined", () => {
+    mockReturn(mockData({ ...mockVideo, key: "" }));
+    renderDetailsPage();
+    expect(screen.getByAltText("Copertina")).toBeInTheDocument();
   });
 });

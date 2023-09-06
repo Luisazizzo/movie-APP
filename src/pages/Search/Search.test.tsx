@@ -39,7 +39,7 @@ const mockReturn = (
   isLoading = false,
   isFetching = false
 ) => {
-  mockedUseSearchMovieQuery.mockReturnValueOnce({
+  mockedUseSearchMovieQuery.mockReturnValue({
     refetch: jest.fn(),
     data,
     isLoading,

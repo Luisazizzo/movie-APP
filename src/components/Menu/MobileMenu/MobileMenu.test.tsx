@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import TendinaMenu from "./MobileMenu";
 import { MemoryRouter } from "react-router-dom";
-import { EnumRoutes } from "../../constants";
+import { EnumRoutes } from "../../../constants";
 
 const setIsVisible = jest.fn();
 
