@@ -1,4 +1,10 @@
-const config = {
+import type { Config } from "jest";
+
+const config: Config = {
+  coveragePathIgnorePatterns: [
+    "<rootDir>/src/reportWebVitals.ts",
+    "^.*\\index\\.ts[x]?$",
+  ],
   verbose: true,
   preset: "ts-jest",
   testEnvironment: "jsdom",
@@ -12,7 +18,10 @@ const config = {
   },
   transformIgnorePatterns: ["<rootDir>/node_modules/"],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
-  setupFilesAfterEnv: ["./jest.setup.js", "<rootDir>/src/setupTests.ts"],
+  setupFilesAfterEnv: [
+    "<rootDir>/jest.setup.js",
+    "<rootDir>/src/setupTests.ts",
+  ],
   collectCoverageFrom: ["<rootDir>/src/**"],
 };
 

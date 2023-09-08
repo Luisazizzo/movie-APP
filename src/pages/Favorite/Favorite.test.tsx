@@ -4,9 +4,9 @@ import { RootState, setupStore } from "../../store/store";
 import { Provider } from "react-redux";
 import { render, screen } from "@testing-library/react";
 
-jest.mock("../../components/ListCard/ListCard", () => () => (
-  <div data-testid="listCard" />
-));
+jest.mock("../../components/index", () => ({
+  ListCard: () => <div data-testid="listCard" />,
+}));
 
 const renderFavorite = (preloadedState?: PreloadedState<RootState>) => {
   render(

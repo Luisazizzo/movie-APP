@@ -1,9 +1,7 @@
 import { useMemo, useState } from "react";
 import styles from "./styles.module.scss";
 import { useGetMoviesByRatedQuery } from "../../api/movieApi";
-import ListCard from "../../components/ListCard/ListCard";
-import Hero from "../../components/Hero/Hero";
-import PaginationButtons from "../../components/PaginationButtons/PaginationButtons";
+import { ListCard, Hero, PaginationButtons } from "../../components/index";
 import { RiLoader4Fill } from "react-icons/ri";
 
 const Home = () => {
@@ -44,7 +42,7 @@ const Home = () => {
   return (
     <div className={styles.Home}>
       {heroControlled}
-      {!isLoading && <h2 className={styles.title}>In arrivo</h2>}
+      {!isLoading && <h2 className={styles.title}>Coming soon</h2>}
       {listControlled}
       {paginationControlled}
     </div>

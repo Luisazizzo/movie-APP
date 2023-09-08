@@ -3,11 +3,11 @@ import * as Yup from "yup";
 export const LogInSchema = (username: string, password: string) =>
   Yup.object().shape({
     username: Yup.string()
-      .required("Username richiesto")
+      .required("Username required")
       .trim()
-      .oneOf([username], "username errato"),
+      .oneOf([username], "wrong username"),
     password: Yup.string()
-      .required("Password richiesta")
+      .required("Password required")
       .trim()
-      .oneOf([password], "password errato"),
+      .oneOf([password], "wrong password"),
   });

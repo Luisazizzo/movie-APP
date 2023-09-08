@@ -6,7 +6,7 @@ import ImageCompanies from "../ImageCompanies/ImageCompanies";
 const FooterDetails = memo(({ companies }: IFooterDetails) => {
   return (
     <div className={styles.footer}>
-      <h2>Compagnia</h2>
+      <h2>Production companies </h2>
       <div className={styles.company}>
         {companies?.map(
           (comp) =>

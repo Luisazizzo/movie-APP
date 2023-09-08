@@ -11,10 +11,10 @@ const ErrorPage = () => {
         alt="error"
       />
       <div className={styles.descriptionError}>
-        <h2 className={styles.error404}>Errore 404</h2>
-        <h2>Ops!! LA pagina non è stata trovata</h2>
+        <h2 className={styles.error404}>Error 404</h2>
+        <h2>Ops!! The page was not found</h2>
         <Link to={EnumRoutes.HOME}>
-          <button>Ritorna alla Home</button>
+          <button>Return to Home</button>
         </Link>
       </div>
     </div>

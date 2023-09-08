@@ -56,11 +56,11 @@ describe("ChangePassword component", () => {
     fireEvent.blur(inputConfirmPassword);
 
     expect(
-      await screen.findByText(/Old Password Richiesta/)
+      await screen.findByText(/Old Password required/)
     ).toBeInTheDocument();
     expect(
-      await screen.findByText(/New Password Richiesta/)
+      await screen.findByText(/New Password required/)
     ).toBeInTheDocument();
-    expect(await screen.findByText(/Conferma la password/)).toBeInTheDocument();
+    expect(await screen.findByText(/Confirm password/)).toBeInTheDocument();
   });
 });

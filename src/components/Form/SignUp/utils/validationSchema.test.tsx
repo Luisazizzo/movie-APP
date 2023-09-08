@@ -5,8 +5,8 @@ describe("Signup validation schema", () => {
     const validationSignup = {
       username: "pippo",
       email: "pippo@pippo",
-      password: "Pippo1234",
-      confirmPassword: "Pippo1234",
+      password: "Pippo1234!",
+      confirmPassword: "Pippo1234!",
     };
     const valid = SignUpSchema.isValidSync(validationSignup);
     expect(valid).toBe(true);
@@ -15,7 +15,7 @@ describe("Signup validation schema", () => {
     const invalidationSigup = {
       username: "pippo",
       email: "pippo@pippo",
-      password: "Pippo1234",
+      password: "Pippo1234!",
       confirmPassword: "Pippo",
     };
     const notValid = SignUpSchema.isValidSync(invalidationSigup);

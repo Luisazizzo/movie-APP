@@ -70,7 +70,7 @@ const SignUp = () => {
             <input
               type="password"
               name="confirmPassword"
-              placeholder="Conferma Password"
+              placeholder="Confirm Password"
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.confirmPassword}

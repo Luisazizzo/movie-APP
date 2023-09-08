@@ -24,9 +24,9 @@ describe("Signup component", () => {
     fireEvent.blur(inputPassword);
     fireEvent.blur(inputConfirmPassword);
 
-    expect(await screen.findByText(/Username richiesto/)).toBeInTheDocument();
-    expect(await screen.findByText(/Email richiesta/)).toBeInTheDocument();
-    expect(await screen.findByText(/Password Richiesta/)).toBeInTheDocument();
-    expect(await screen.findByText(/Conferma la password/)).toBeInTheDocument();
+    expect(await screen.findByText(/Username required/)).toBeInTheDocument();
+    expect(await screen.findByText(/Email required/)).toBeInTheDocument();
+    expect(await screen.findByText(/Password required/)).toBeInTheDocument();
+    expect(await screen.findByText(/Confirm password/)).toBeInTheDocument();
   });
 });

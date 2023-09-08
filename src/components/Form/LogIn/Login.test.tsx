@@ -57,7 +57,7 @@ describe("Login component", () => {
     fireEvent.blur(inputUsername);
     fireEvent.blur(inputPassword);
 
-    expect(await screen.findByText(/Username richiesto/)).toBeInTheDocument();
-    expect(await screen.findByText(/Password richiesta/)).toBeInTheDocument();
+    expect(await screen.findByText(/Username required/)).toBeInTheDocument();
+    expect(await screen.findByText(/Password required/)).toBeInTheDocument();
   });
 });

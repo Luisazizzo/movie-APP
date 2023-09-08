@@ -9,7 +9,7 @@ export const navLinks = [
     activeClassName: "active",
   },
   {
-    label: "La mia lista",
+    label: "Favorite list",
     route: EnumRoutes.FAVORITE,
     testId: "favorite-nav",
     activeClassName: "active",

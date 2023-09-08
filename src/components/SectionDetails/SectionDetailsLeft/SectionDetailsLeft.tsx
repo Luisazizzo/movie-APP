@@ -35,7 +35,7 @@ const SectionDetailsLeft = ({ data }: ISectionLeftProps) => {
     }
     return (
       <p className={styles.overview}>
-        Mi dispiace ma non c'è nessuna descrizione per questo film
+        I'm sorry but there is no description for this movie
       </p>
     );
   }, [data.overview]);
@@ -54,11 +54,11 @@ const SectionDetailsLeft = ({ data }: ISectionLeftProps) => {
         {controlledHeart}
       </div>
       <p>
-        <b>Uscita:</b>
+        <b>Release:</b>
         {data.release_date && invertDate(data.release_date)}
       </p>
       <p>
-        <b>Durata:</b> {invertMinutes(data.runtime)}
+        <b>Duration:</b> {invertMinutes(data.runtime)}
       </p>
       {adultDot}
       {controlledOverwie}

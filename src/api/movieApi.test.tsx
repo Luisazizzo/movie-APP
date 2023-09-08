@@ -40,9 +40,12 @@ describe("movieApi", () => {
     });
   });
   test("should get search movie", () => {
-    const { result } = renderHook(() => useGetSearchMovieQuery("pippo"), {
-      wrapper: Wrapper,
-    });
+    const { result } = renderHook(
+      () => useGetSearchMovieQuery({ search: "pippo", page: 1 }),
+      {
+        wrapper: Wrapper,
+      }
+    );
     expect(result.current).toMatchObject({
       status: "pending",
       endpointName: "getSearchMovie",

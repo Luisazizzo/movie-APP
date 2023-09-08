@@ -40,14 +40,11 @@ const mockReturn = (
   });
 };
 
-jest.mock("../../components/PaginationButtons/PaginationButtons", () => () => (
-  <div data-testid="buttons" />
-));
-
-jest.mock("../../components/ListCard/ListCard", () => () => (
-  <div data-testid="movie-list" />
-));
-jest.mock("../../components/Hero/Hero", () => () => <div data-testid="hero" />);
+jest.mock("../../components/index", () => ({
+  ListCard: () => <div data-testid="movie-list" />,
+  Hero: () => <div data-testid="hero" />,
+  PaginationButtons: () => <div data-testid="buttons" />,
+}));
 
 jest.mock("react-icons/ri", () => ({
   ...jest.requireActual("react-icons/ri"),

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import ListCard from "../../components/ListCard/ListCard";
+import { ListCard } from "../../components/index";
 import styles from "./styles.module.scss";
 import { RootState } from "../../store/store";
 import { useMemo } from "react";
@@ -14,13 +14,13 @@ const Favorite = () => {
     }
     return (
       <div className={styles.notPrefer}>
-        <p>Non ci sono preferiti</p>
+        <p>There are no favorite</p>
       </div>
     );
   }, [stateFavorite]);
   return (
     <div className={styles.Preferiti}>
-      <h2 className={styles.title}>Pagina Preferiti</h2>
+      <h2 className={styles.title}>Favorite page</h2>
       {controlledFavorite}
     </div>
   );

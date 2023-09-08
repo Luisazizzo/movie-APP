@@ -6,23 +6,12 @@ import { render, screen } from "@testing-library/react";
 import { setupStore } from "../../store/store";
 import { IVideoResults } from "../../interface/IGetIdVideos";
 
-jest.mock(
-  "../../components/SectionDetails/SectionDetailsRight/SectionDetailsRight",
-  () => () => <div data-testid="sectionDetailsRight" />
-);
-
-jest.mock("../../components/FooterDetails/FooterDetails", () => () => (
-  <div data-testid="footerDetails" />
-));
-
-jest.mock(
-  "../../components/SectionDetails/SectionDetailsLeft/SectionDetailsLeft",
-  () => () => <div data-testid="sectionDetailsLeft" />
-);
-
-jest.mock("../../components/GenresList/GenresList", () => () => (
-  <div data-testid="genresList" />
-));
+jest.mock("../../components/index", () => ({
+  SectionDetailsRight: () => <div data-testid="sectionDetailsRight" />,
+  FooterDetails: () => <div data-testid="footerDetails" />,
+  SectionDetailsLeft: () => <div data-testid="sectionDetailsLeft" />,
+  GenresList: () => <div data-testid="genresList" />,
+}));
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),

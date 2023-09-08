@@ -1,6 +1,5 @@
 import { useEffect, useMemo } from "react";
-import LogIn from "../../components/Form/LogIn/LogIn";
-import SignUp from "../../components/Form/SignUp/SignUp";
+import { LogIn, SignUp } from "../../components/index";
 import styles from "./styles.module.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";

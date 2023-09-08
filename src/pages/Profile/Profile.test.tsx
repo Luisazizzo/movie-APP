@@ -22,13 +22,10 @@ jest.mock("./hooks/usePopup/usePopup", () => () => ({
   handleConfirmPopup: () => mockHandleConfirmPopup,
 }));
 
-jest.mock("../../components/ModalChange/ModalChange", () => () => (
-  <div data-testid="modal" />
-));
-
-jest.mock("../../components/Form/ChangePassword/ChangePassword", () => () => (
-  <div data-testid="form" />
-));
+jest.mock("../../components/index", () => ({
+  ModalChange: () => <div data-testid="modal" />,
+  ChangePassword: () => <div data-testid="form" />,
+}));
 
 jest.mock("antd", () => ({
   ...jest.requireActual("antd"),

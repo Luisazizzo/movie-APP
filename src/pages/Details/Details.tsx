@@ -3,10 +3,12 @@ import { useGetIdParamsQuery } from "../../api/movieApi";
 import styles from "./styles.module.scss";
 import { useEffect, useMemo } from "react";
 import { EnumBaseUrl, EnumSizeImage } from "../../constants";
-import SectionDetailsRight from "../../components/SectionDetails/SectionDetailsRight/SectionDetailsRight";
-import FooterDetails from "../../components/FooterDetails/FooterDetails";
-import SectionDetailsLeft from "../../components/SectionDetails/SectionDetailsLeft/SectionDetailsLeft";
-import GenresList from "../../components/GenresList/GenresList";
+import {
+  SectionDetailsRight,
+  FooterDetails,
+  SectionDetailsLeft,
+  GenresList,
+} from "../../components/index";
 
 const Details = () => {
   const { id } = useParams();
@@ -52,7 +54,7 @@ const Details = () => {
     }
     return (
       <div>
-        <p>Dettagli non disponibili</p>
+        <p>Details not available</p>
       </div>
     );
   }, [data]);

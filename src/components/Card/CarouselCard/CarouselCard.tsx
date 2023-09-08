@@ -26,7 +26,7 @@ const CarouselCard = ({ item }: ICarouselProps) => {
       <div className={styles.info}>
         <h1>{item.title}</h1>
         <p className={styles.description}>{item.overview}</p>
-        <button onClick={handleClick}>Dettagli</button>
+        <button onClick={handleClick}>Details</button>
       </div>
     </div>
   );

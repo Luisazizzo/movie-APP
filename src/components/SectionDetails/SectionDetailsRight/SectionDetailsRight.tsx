@@ -9,7 +9,7 @@ const SectionDetailsRight = ({ data }: ISectionRightProps) => {
     if (data.revenue) {
       return (
         <p>
-          <b>Incasso attuale:</b>
+          <b>Current collection:</b>
           {formatValue(data.revenue)}
         </p>
       );
@@ -20,8 +20,8 @@ const SectionDetailsRight = ({ data }: ISectionRightProps) => {
     if (data.vote_count && data.vote_average) {
       return (
         <p>
-          <b>Voto:</b> {data.vote_average.toFixed(1)} su {data.vote_count}
-          giudizi
+          <b>Vote:</b> {data.vote_average.toFixed(1)} on {data.vote_count}
+          reviews
         </p>
       );
     }
@@ -45,10 +45,10 @@ const SectionDetailsRight = ({ data }: ISectionRightProps) => {
       {revenue}
       {judgment}
       <p>
-        <b>Lingua originale:</b> {data.original_language}
+        <b>Original language:</b> {data.original_language}
       </p>
       <Link to={`https://www.imdb.com/title/${data.imdb_id}/`} target="_blank">
-        Vai su IMDb
+        Go up IMDb
       </Link>
     </div>
   );

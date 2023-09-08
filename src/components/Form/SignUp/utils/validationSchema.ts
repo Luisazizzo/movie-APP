@@ -1,19 +1,16 @@
 import * as Yup from "yup";
 
 export const SignUpSchema = Yup.object().shape({
-  username: Yup.string().required("Username richiesto").trim(),
-  email: Yup.string()
-    .email("Email non valida")
-    .required("Email richiesta")
-    .trim(),
+  username: Yup.string().required("Username required").trim(),
+  email: Yup.string().email("Invalid email").required("Email required").trim(),
   password: Yup.string()
-    .required("Password Richiesta")
+    .required("Password required")
     .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-      "Password non valida"
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[a-zA-Z\d\W_]{8,}$/,
+      "Invalid password"
     )
     .trim(),
   confirmPassword: Yup.string()
-    .oneOf([Yup.ref("password")], "Le password devono coincidere")
-    .required("Conferma la password"),
+    .oneOf([Yup.ref("password")], "Password must match")
+    .required("Confirm password"),
 });

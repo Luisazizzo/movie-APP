@@ -17,15 +17,17 @@ export const movieApi = createApi({
   }),
   endpoints: (builder) => ({
     getMoviesByRated: builder.query<IGetMoviesRes, number>({
-      query: (page) => `movie/upcoming?language=it-IT&page=${page}`,
+      query: (page) => `movie/upcoming?page=${page}`,
     }),
     getIdParams: builder.query<IGetMovieDetails, string>({
       query: (id) => `movie/${id}?append_to_response=videos`,
     }),
-    getSearchMovie: builder.query<IGetSearch, string>({
-      query: (search) =>
-        `search/movie?query=${search}&include_adult=false&language=it-US&page=1`,
-    }),
+    getSearchMovie: builder.query<IGetSearch, { search: string; page: number }>(
+      {
+        query: ({ search, page }) =>
+          `search/movie?query=${search}&include_adult=false&page=${page}`,
+      }
+    ),
   }),
 });
 

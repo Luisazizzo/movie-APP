@@ -5,9 +5,10 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { setupStore } from "../../store/store";
 
-jest.mock("../../components/ListCard/ListCard", () => () => (
-  <div data-testid="list" />
-));
+jest.mock("../../components/index", () => ({
+  ListCard: () => <div data-testid="list" />,
+  PaginationButtons: () => <div data-testid="buttons"></div>,
+}));
 
 jest.mock("react-icons/ri", () => ({
   ...jest.requireActual("react-icons/ri"),

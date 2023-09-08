@@ -3,8 +3,7 @@ import { useSelector } from "react-redux";
 import styles from "./styles.module.scss";
 import { RootState } from "../../store/store";
 import { Button, Popconfirm, Space } from "antd";
-import ModalChange from "../../components/ModalChange/ModalChange";
-import ChangePassword from "../../components/Form/ChangePassword/ChangePassword";
+import { ModalChange, ChangePassword } from "../../components/index";
 import useLogOut from "./hooks/useLogOut/useLogOut";
 import useModal from "./hooks/useModal/useModal";
 import usePopup from "./hooks/usePopup/usePopup";
@@ -23,7 +22,7 @@ const Profile = () => {
 
   return (
     <div className={styles.profile}>
-      <h2 className={styles.title}>Benvenuto {userData.username}</h2>
+      <h2 className={styles.title}>Welcome {userData.username}</h2>
       <p className={styles.email}>Email: {userData.email}</p>
       <Space className={styles.space}>
         <Button
@@ -32,10 +31,10 @@ const Profile = () => {
           danger
           className={styles.button}
         >
-          Disconnetti
+          Log out
         </Button>
         <Button className={styles.button} type="primary" onClick={showModal}>
-          Cambia Password
+          Change Password
         </Button>
         <ModalChange closeModal={closeModal} isModalOpen={isModalOpen}>
           <ChangePassword closeModal={closeModal} />
@@ -53,7 +52,7 @@ const Profile = () => {
             type="primary"
             onClick={showPopconfirm}
           >
-            Elimina Account
+            Delete Account
           </Button>
         </Popconfirm>
       </Space>

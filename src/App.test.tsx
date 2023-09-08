@@ -1,10 +1,10 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import App from "./App";
-import { Provider } from "react-redux";
-import { MemoryRouter } from "react-router-dom";
-import { setupStore } from "./store/store";
 import { IGetMovieDetails, IUser } from "./interface";
+import { EnumRoutes } from "./constants";
+import { retrieveUser } from "./store/reduxSlices/userSlice/usersSlice";
+import { retrieveFavorites } from "./store/reduxSlices/favoriteSlice/favoriteSlice";
 
 jest.mock("./components/Menu/Navbar/Navbar", () => () => (
   <div data-testid="navbar" />
@@ -16,20 +16,17 @@ jest.mock("react-redux", () => ({
   useDispatch: () => mockUseDispatch,
 }));
 
-const mockUseLocation = jest.fn();
+//const mockUseLocation = jest.fn();
+const mockOutlet = jest.fn();
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
-  useLocation: () => mockUseLocation,
+  //useLocation: () => mockUseLocation,
+  Outlet: () => mockOutlet,
 }));
 
-const renderApp = () =>
-  render(
-    <Provider store={setupStore()}>
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    </Provider>
-  );
+const renderApp = () => render(<App />);
+
+const getItem = jest.spyOn(Storage.prototype, "getItem");
 
 const mockIUser: IUser = {
   username: "username",
@@ -83,14 +80,38 @@ const mockDetails: IGetMovieDetails = {
   vote_average: 8.271,
   vote_count: 2220,
 };
+const mockUseLocationSpy = jest.spyOn(
+  require("react-router-dom"),
+  "useLocation"
+);
 
 describe("App component", () => {
-  test("should render app", () => {
+  test("should render navbar if location is different from EnumsRouters.BASE", () => {
+    mockUseLocationSpy.mockReturnValueOnce({
+      pathname: EnumRoutes.BASE + EnumRoutes.HOME,
+    });
     renderApp();
     expect(screen.getByTestId("navbar")).toBeInTheDocument();
   });
-  //   test("should render", () => {
-  //     renderApp();
-  //     expect(localStorage.getItem("users")).toEqual(JSON.stringify(mockIUser));
-  //   });
+  test("should not render navbar if location is the same from EnumsRouters.BASE", () => {
+    mockUseLocationSpy.mockReturnValue({ pathname: EnumRoutes.BASE });
+    renderApp();
+    expect(screen.queryByTestId("navbar")).not.toBeInTheDocument();
+  });
+  test("should call getItem localStorage", () => {
+    renderApp();
+    expect(getItem).toHaveBeenCalled();
+  });
+  test("should render mockIUser", () => {
+    getItem.mockReturnValueOnce(JSON.stringify(mockIUser));
+    renderApp();
+    expect(mockUseDispatch).toHaveBeenCalledWith(retrieveUser(mockIUser));
+  });
+  test("should render mockDetails", () => {
+    getItem.mockReturnValue(JSON.stringify([mockDetails]));
+    renderApp();
+    expect(mockUseDispatch).toHaveBeenCalledWith(
+      retrieveFavorites([mockDetails])
+    );
+  });
 });

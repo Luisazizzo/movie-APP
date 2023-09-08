@@ -10,12 +10,10 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockNavigate,
 }));
 
-jest.mock("../../components/Form/LogIn/LogIn", () => () => (
-  <div data-testid="login" />
-));
-jest.mock("../../components/Form/SignUp/SignUp", () => () => (
-  <div data-testid="signup" />
-));
+jest.mock("../../components/index", () => ({
+  LogIn: () => <div data-testid="login" />,
+  SignUp: () => <div data-testid="signup" />,
+}));
 
 const renderAuthPage = (preloadedState?: PreloadedState<RootState>) => {
   render(
