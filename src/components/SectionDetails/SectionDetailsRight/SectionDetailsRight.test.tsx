@@ -46,7 +46,7 @@ const renderSectionDetailsRight = () =>
   );
 
 describe("SectionDetailsRight", () => {
-  test.each([/Incasso attuale:/, /Voto:/, details.tagline])(
+  test.each([/Gross revenue:/, /Vote:/, details.tagline])(
     "should render the SectionDetailsRight component if correct text",
     (textValue) => {
       renderSectionDetailsRight();

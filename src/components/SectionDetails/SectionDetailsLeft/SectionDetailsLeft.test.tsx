@@ -76,7 +76,7 @@ describe("SectionDetailsLeft", () => {
   test("should render adultDot correctly if is false", () => {
     renderSectionDetailsLeft(details);
     expect(screen.getByTestId("adult_false")).toHaveClass("adulti_false");
-    expect(screen.getByText("Per tutti")).toBeInTheDocument();
+    expect(screen.getByText("For everyone")).toBeInTheDocument();
   });
   test("should render adultDot correctly if is true", () => {
     renderSectionDetailsLeft({ ...details, adult: true });
@@ -90,9 +90,7 @@ describe("SectionDetailsLeft", () => {
   test("should render controlledOverwie if is undefined", () => {
     renderSectionDetailsLeft({ ...details, overview: "" });
     expect(
-      screen.getByText(
-        "Mi dispiace ma non c'è nessuna descrizione per questo film"
-      )
+      screen.getByText("I'm sorry but there is no description for this movie")
     ).toBeInTheDocument();
   });
 

@@ -31,7 +31,7 @@ const SearchPage = () => {
       if (data?.results.length) {
         return (
           <>
-            <ListCard movies={data.results} />{" "}
+            <ListCard movies={data.results} />
             <PaginationButtons page={page} setPage={setPage} />
           </>
         );

@@ -69,7 +69,7 @@ describe("Search Page", () => {
   test("should not render results if data lenght is falsy", () => {
     mockReturn();
     renderSearchPage();
-    expect(screen.getByText(/Nessun risultato/)).toBeInTheDocument();
+    expect(screen.getByText(/No result/)).toBeInTheDocument();
   });
   test("should render input for search movie", () => {
     mockReturn(mockData);

@@ -37,6 +37,6 @@ describe("Favorite Page", () => {
       favoriteSlice: [],
     };
     renderFavorite(preloadedState);
-    expect(screen.getByText(/Non ci sono preferiti/)).toBeInTheDocument();
+    expect(screen.getByText(/There are no favorite/)).toBeInTheDocument();
   });
 });

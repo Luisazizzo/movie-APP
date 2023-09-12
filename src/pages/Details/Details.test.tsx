@@ -98,7 +98,7 @@ describe("Details page", () => {
   test("should render paragraph if data is undefined", () => {
     mockReturn();
     renderDetailsPage();
-    expect(screen.getByText(/Dettagli non disponibili/)).toBeInTheDocument();
+    expect(screen.getByText(/Details not available/)).toBeInTheDocument();
   });
   test("should render GenresList component if data is found", () => {
     mockReturn(mockData(mockVideo));

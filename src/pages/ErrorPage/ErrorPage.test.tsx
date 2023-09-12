@@ -10,13 +10,12 @@ const renderErrorPage = () =>
   );
 
 describe("ErrorPage", () => {
-  test.each([
-    /Errore 404/,
-    /Ops!! LA pagina non è stata trovata/,
-    /Ritorna alla Home/,
-  ])("should render the ErrorPage if correct text", (textValue) => {
-    renderErrorPage();
+  test.each([/Error 404/, /Ops!! The page was not found/, /Return to Home/])(
+    "should render the ErrorPage if correct text",
+    (textValue) => {
+      renderErrorPage();
 
-    expect(screen.getByText(textValue)).toBeInTheDocument();
-  });
+      expect(screen.getByText(textValue)).toBeInTheDocument();
+    }
+  );
 });

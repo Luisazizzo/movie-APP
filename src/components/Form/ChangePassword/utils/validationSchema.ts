@@ -3,11 +3,11 @@ import * as Yup from "yup";
 export const changePasswordSchema = (password: string) =>
   Yup.object().shape({
     oldPassword: Yup.string()
-      .required("Old Password request")
+      .required("Old Password required")
       .trim()
       .oneOf([password], "wrong password"),
     newPassword: Yup.string()
-      .required("New Password request")
+      .required("New Password required")
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
         "Invalid password"

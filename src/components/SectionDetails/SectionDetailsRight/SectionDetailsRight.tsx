@@ -9,7 +9,7 @@ const SectionDetailsRight = ({ data }: ISectionRightProps) => {
     if (data.revenue) {
       return (
         <p>
-          <b>Current collection:</b>
+          <b>Gross revenue:</b>
           {formatValue(data.revenue)}
         </p>
       );

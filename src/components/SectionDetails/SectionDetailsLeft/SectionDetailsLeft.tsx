@@ -24,7 +24,7 @@ const SectionDetailsLeft = ({ data }: ISectionLeftProps) => {
     return (
       <div className={styles.categoria}>
         <div data-testid="adult_false" className="adulti_false"></div>
-        <p>Per tutti</p>
+        <p>For everyone</p>
       </div>
     );
   }, [data.adult]);

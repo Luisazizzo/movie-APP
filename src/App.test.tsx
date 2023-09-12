@@ -1,10 +1,11 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import App from "./App";
 import { IGetMovieDetails, IUser } from "./interface";
 import { EnumRoutes } from "./constants";
 import { retrieveUser } from "./store/reduxSlices/userSlice/usersSlice";
 import { retrieveFavorites } from "./store/reduxSlices/favoriteSlice/favoriteSlice";
+import { MemoryRouter } from "react-router-dom";
 
 jest.mock("./components/Menu/Navbar/Navbar", () => () => (
   <div data-testid="navbar" />
@@ -16,26 +17,39 @@ jest.mock("react-redux", () => ({
   useDispatch: () => mockUseDispatch,
 }));
 
-//const mockUseLocation = jest.fn();
 const mockOutlet = jest.fn();
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
-  //useLocation: () => mockUseLocation,
   Outlet: () => mockOutlet,
 }));
 
-const renderApp = () => render(<App />);
+const renderApp = (location: Partial<Location> | string = "") =>
+  render(
+    <MemoryRouter initialEntries={[EnumRoutes.BASE + location]}>
+      <App />
+    </MemoryRouter>
+  );
 
-const getItem = jest.spyOn(Storage.prototype, "getItem");
+const mockGetItemReturn = (isDefined = false) => {
+  const storage: { [key: string]: string } = {
+    users: JSON.stringify(mockedUser),
+    favorites: JSON.stringify([mockedFavorites]),
+  };
+  const mockedLocalStorageGetItem = jest.fn((key: string) =>
+    isDefined ? storage[key] : null
+  );
+  global.Storage.prototype.getItem = mockedLocalStorageGetItem;
+  return mockedLocalStorageGetItem;
+};
 
-const mockIUser: IUser = {
+const mockedUser: IUser = {
   username: "username",
   email: "email",
   password: "password",
   isLogged: false,
 };
 
-const mockDetails: IGetMovieDetails = {
+const mockedFavorites: IGetMovieDetails = {
   adult: false,
   backdrop_path: "/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg",
   belongs_to_collection: null,
@@ -80,38 +94,32 @@ const mockDetails: IGetMovieDetails = {
   vote_average: 8.271,
   vote_count: 2220,
 };
-const mockUseLocationSpy = jest.spyOn(
-  require("react-router-dom"),
-  "useLocation"
-);
 
 describe("App component", () => {
-  test("should render navbar if location is different from EnumsRouters.BASE", () => {
-    mockUseLocationSpy.mockReturnValueOnce({
-      pathname: EnumRoutes.BASE + EnumRoutes.HOME,
-    });
-    renderApp();
+  afterEach(() => {
+    cleanup();
+    jest.clearAllMocks();
+  });
+  afterAll(() => {
+    (global.Storage.prototype.getItem as jest.Mock<any, any>).mockRestore();
+  });
+  test("should render navbar if location is different from /", () => {
+    renderApp({ pathname: EnumRoutes.HOME });
     expect(screen.getByTestId("navbar")).toBeInTheDocument();
   });
-  test("should not render navbar if location is the same from EnumsRouters.BASE", () => {
-    mockUseLocationSpy.mockReturnValue({ pathname: EnumRoutes.BASE });
+  test("should not render navbar if location is the same from /", () => {
     renderApp();
     expect(screen.queryByTestId("navbar")).not.toBeInTheDocument();
   });
-  test("should call getItem localStorage", () => {
+  test("should render mockedUser and mockedFavorites", () => {
+    mockGetItemReturn(true).mockReturnValueOnce(JSON.stringify(mockedUser));
     renderApp();
-    expect(getItem).toHaveBeenCalled();
-  });
-  test("should render mockIUser", () => {
-    getItem.mockReturnValueOnce(JSON.stringify(mockIUser));
-    renderApp();
-    expect(mockUseDispatch).toHaveBeenCalledWith(retrieveUser(mockIUser));
-  });
-  test("should render mockDetails", () => {
-    getItem.mockReturnValue(JSON.stringify([mockDetails]));
-    renderApp();
+    expect(mockUseDispatch).toHaveBeenCalledWith(retrieveUser(mockedUser));
+    mockGetItemReturn(true).mockReturnValueOnce(
+      JSON.stringify([mockedFavorites])
+    );
     expect(mockUseDispatch).toHaveBeenCalledWith(
-      retrieveFavorites([mockDetails])
+      retrieveFavorites([mockedFavorites])
     );
   });
 });
