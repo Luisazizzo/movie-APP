@@ -67,7 +67,7 @@ const ChangePassword = ({ closeModal }: IChangePasswordProps) => {
       </p>
       <Form.Item label="Confirm Password" name="confirmPassword">
         <Input.Password
-          value={formik.errors.confirmPassword}
+          value={formik.values.confirmPassword}
           onChange={(e) => {
             formik.setFieldValue("confirmPassword", e.target.value);
           }}

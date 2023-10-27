@@ -9,8 +9,8 @@ export const changePasswordSchema = (password: string) =>
     newPassword: Yup.string()
       .required("New Password required")
       .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-        "Invalid password"
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[a-zA-Z\d\W_]{8,}$/,
+        "Invalid password",
       )
       .trim(),
     confirmPassword: Yup.string()
